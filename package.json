@@ -1,0 +1,21 @@
+{
+  "name": "animeflv-graphql",
+  "version": "1.0.0",
+  "description": "GraphQL API for AnimeFLV",
+  "main": "index.js",
+  "repository": "https://github.com/JuanM04/animeflv-graphql.git",
+  "author": "Juan Martín Seery <me@juanm04.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-micro": "^2.9.16",
+    "cheerio": "^1.0.0-rc.3",
+    "cloudscraper": "^4.5.0",
+    "graphql": "^14.5.8",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.15",
+    "@types/request": "^2.48.4",
+    "@types/request-promise": "^4.1.45"
+  }
+}
