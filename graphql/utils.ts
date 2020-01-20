@@ -21,11 +21,11 @@ export const getCover = (animeId: number) =>
 export const getThumbnail = (animeId: number, episodeN: number) =>
   `https://cdn.animeflv.net/screenshots/${animeId}/${episodeN}/th_3.jpg`;
 
-export const getAnime = async (id: number, ctx) => {
+export const getAnime = async ({ id, slug }, ctx) => {
   if (ctx.animeBody) {
     return ctx.animeBody;
   } else {
-    return await get(`/anime/${id}/-`);
+    return await get(`/anime/${id}/${slug}`);
   }
 };
 

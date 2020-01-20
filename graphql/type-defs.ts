@@ -53,7 +53,7 @@ export default gql`
   }
 
   type Query {
-    anime(id: Int!): Anime
+    anime(id: Int!, slug: String!): Anime
     search(query: String!): [Anime!]!
     explore(type: AnimeType, status: AnimeStatus): [Anime!]!
     episodeSources(

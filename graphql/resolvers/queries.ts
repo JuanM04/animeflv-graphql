@@ -3,8 +3,8 @@ import { get, getCover, getThumbnail, getAnime, explore } from "../utils";
 
 export default {
   Query: {
-    anime: async (_, { id }, ctx) => {
-      const body = await getAnime(id, ctx);
+    anime: async (_, { id, slug }, ctx) => {
+      const body = await getAnime({ id, slug }, ctx);
 
       const rawInfo = body.split("var anime_info = ", 2)[1].split(";", 2)[0];
       const info = JSON.parse(rawInfo);
@@ -14,7 +14,7 @@ export default {
       return {
         id,
         name: info[1],
-        slug: info[2],
+        slug,
         type: $("span.Type")
           .attr("class")
           .split(" ")[1],
@@ -35,8 +35,8 @@ export default {
     }
   },
   Anime: {
-    status: async ({ id }, _, ctx) => {
-      const body = await getAnime(id, ctx);
+    status: async (args, _, ctx) => {
+      const body = await getAnime(args, ctx);
       const $ = cheerio.load(body);
 
       let status = 1;
@@ -45,8 +45,8 @@ export default {
 
       return status;
     },
-    genres: async ({ id }, _, ctx) => {
-      const body = await getAnime(id, ctx);
+    genres: async (args, _, ctx) => {
+      const body = await getAnime(args, ctx);
       const $ = cheerio.load(body);
 
       return $("nav.Nvgnrs a").map((_, a) => {
@@ -58,19 +58,19 @@ export default {
         };
       });
     },
-    episodes: async ({ id }, _, ctx) => {
-      const body = await getAnime(id, ctx);
+    episodes: async (args, _, ctx) => {
+      const body = await getAnime(args, ctx);
 
       const rawEpisodes = body.split("var episodes = ", 2)[1].split(";", 2)[0];
 
       return JSON.parse(rawEpisodes).map(arr => ({
         id: arr[1],
         n: arr[0],
-        thumbnail: getThumbnail(id, arr[1])
+        thumbnail: getThumbnail(args.id, arr[0])
       }));
     },
-    nextEpisode: async ({ id }, _, ctx) => {
-      const body = await getAnime(id, ctx);
+    nextEpisode: async (args, _, ctx) => {
+      const body = await getAnime(args, ctx);
 
       const rawInfo = body.split("var anime_info = ", 2)[1].split(";", 2)[0];
 
