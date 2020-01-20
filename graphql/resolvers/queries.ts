@@ -1,5 +1,12 @@
 import cheerio from "cheerio";
-import { get, getCover, getThumbnail, getAnime, explore } from "../utils";
+import {
+  get,
+  getCover,
+  getThumbnail,
+  imageUrlToBase64,
+  getAnime,
+  explore
+} from "../utils";
 
 export default {
   Query: {
@@ -35,6 +42,7 @@ export default {
     }
   },
   Anime: {
+    cover: async ({ cover }) => imageUrlToBase64(cover),
     status: async (args, _, ctx) => {
       const body = await getAnime(args, ctx);
       const $ = cheerio.load(body);
@@ -76,5 +84,8 @@ export default {
 
       return JSON.parse(rawInfo)[3] || null;
     }
+  },
+  Episode: {
+    thumbnail: async ({ thumbnail }) => imageUrlToBase64(thumbnail)
   }
 };

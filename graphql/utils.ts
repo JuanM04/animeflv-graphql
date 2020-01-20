@@ -21,6 +21,16 @@ export const getCover = (animeId: number) =>
 export const getThumbnail = (animeId: number, episodeN: number) =>
   `https://cdn.animeflv.net/screenshots/${animeId}/${episodeN}/th_3.jpg`;
 
+export const imageUrlToBase64 = async url => {
+  let res = await cloudscraper({
+    url,
+    method: "GET",
+    encoding: null
+  });
+
+  return Buffer.from(res).toString("base64");
+};
+
 export const getAnime = async ({ id, slug }, ctx) => {
   if (ctx.animeBody) {
     return ctx.animeBody;
