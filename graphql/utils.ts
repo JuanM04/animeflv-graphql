@@ -53,10 +53,8 @@ export const explore = async ({ query, type, status }) => {
       .find("a.Button")
       .attr("href")
       .split("/");
-    const imageUrl = $anime
-      .find("div.Image img")
-      .attr("src")
-      .split("/");
+    const image = $anime.find("div.Image img");
+    const imageUrl = (image.attr("src") || image.attr("data-cfsrc")).split("/");
     const id = parseInt(imageUrl[imageUrl.length - 1].split(".")[0]);
 
     return {
