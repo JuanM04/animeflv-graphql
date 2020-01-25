@@ -64,9 +64,7 @@ export const explore = async ({ query, type, status }) => {
       type: $anime
         .find("span.Type")
         .attr("class")
-        .split(" ")[1]
-        .toUpperCase(),
-      cover: getCover(id),
+        .split(" ")[1],
       synopsis: $anime
         .find("div.Description p")
         .last()
