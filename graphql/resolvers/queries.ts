@@ -60,11 +60,7 @@ export default {
 
       return $("nav.Nvgnrs a").map((_, a) => {
         const $a = $(a);
-
-        return {
-          id: $a.attr("href").split("=")[1],
-          name: $a.text()
-        };
+        return $a.attr("href").split("=")[1];
       });
     },
     episodes: async (args, _, ctx) => {
