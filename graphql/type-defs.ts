@@ -28,6 +28,7 @@ export default gql`
     type: AnimeType!
     status: AnimeStatus!
     cover: String!
+    banner: String!
     synopsis: String!
     rating: Float!
     genres: [Genre!]!

@@ -2,6 +2,7 @@ import cheerio from "cheerio";
 import {
   get,
   getCover,
+  getBanner,
   getThumbnail,
   imageUrlToBase64,
   getAnime,
@@ -25,7 +26,6 @@ export default {
         type: $("span.Type")
           .attr("class")
           .split(" ")[1],
-        cover: getCover(id),
         synopsis: $("div.Description p").text(),
         rating: parseFloat($("#votes_prmd").text())
       };
@@ -42,7 +42,8 @@ export default {
     }
   },
   Anime: {
-    cover: async ({ cover }) => imageUrlToBase64(cover),
+    cover: async ({ id }) => imageUrlToBase64(getCover(id)),
+    banner: async ({ id }) => imageUrlToBase64(getBanner(id)),
     status: async (args, _, ctx) => {
       const body = await getAnime(args, ctx);
       const $ = cheerio.load(body);

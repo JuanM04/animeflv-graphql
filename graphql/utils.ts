@@ -18,6 +18,9 @@ export const get = async (url: string, query?: any): Promise<string> => {
 export const getCover = (animeId: number) =>
   `https://animeflv.net/uploads/animes/covers/${animeId}.jpg`;
 
+export const getBanner = (animeId: number) =>
+  `https://animeflv.net/uploads/animes/banners/${animeId}.jpg`;
+
 export const getThumbnail = (animeId: number, episodeN: number) =>
   `https://cdn.animeflv.net/screenshots/${animeId}/${episodeN}/th_3.jpg`;
 
