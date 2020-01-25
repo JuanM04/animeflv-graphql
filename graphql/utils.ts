@@ -2,12 +2,11 @@ import cloudscraper from "cloudscraper";
 import cheerio from "cheerio";
 import { GraphQLError } from "graphql";
 
-export const get = async (url: string, query?: any): Promise<string> => {
+export const get = async (url: string, query?: string): Promise<string> => {
   try {
     let res = await cloudscraper({
-      url: "https://animeflv.net" + url,
-      method: "GET",
-      qs: query || {}
+      url: `https://animeflv.net${url}` + (query ? `?${query}` : ""),
+      method: "GET"
     });
     return res;
   } catch (error) {
@@ -42,10 +41,10 @@ export const getAnime = async ({ id, slug }, ctx) => {
   }
 };
 
-export const explore = async ({ query, type, status }) => {
+export const explore = async ({ query, type, status, genre }) => {
   const body: string = await get(
     `/browse`,
-    query ? { q: query } : { type, status }
+    query ? `q=${query}` : generateQuery({ type, status, genre })
   );
 
   const $ = cheerio.load(body);
@@ -76,3 +75,15 @@ export const explore = async ({ query, type, status }) => {
     };
   });
 };
+
+function generateQuery(object: object) {
+  let accum = "";
+  for (const key in object) {
+    if (object[key] == null || object[key] == []) continue;
+
+    for (const item of object[key]) {
+      accum += `&${key}[]=${item}`;
+    }
+  }
+  return accum;
+}
