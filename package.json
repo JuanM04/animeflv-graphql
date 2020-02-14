@@ -1,6 +1,6 @@
 {
   "name": "animeflv-graphql",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "GraphQL API for AnimeFLV",
   "main": "index.js",
   "repository": "https://github.com/JuanM04/animeflv-graphql.git",

@@ -95,6 +95,9 @@ dist
 # Serverless directories
 .serverless/
 
+# ZEIT Now
+.now
+
 # FuseBox cache
 .fusebox/
 
