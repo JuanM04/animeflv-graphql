@@ -92,7 +92,7 @@ export default gql`
   }
 
   type Query {
-    anime(id: Int!, slug: String!): Anime
+    anime(id: Int, slug: String!): Anime
     search(query: String!): [Anime!]!
     explore(
       type: [AnimeType!]

@@ -33,11 +33,11 @@ export const imageUrlToBase64 = async url => {
   return Buffer.from(res).toString("base64");
 };
 
-export const getAnime = async ({ id, slug }, ctx) => {
+export const getAnime = async ({ slug }, ctx) => {
   if (ctx.animeBody) {
     return ctx.animeBody;
   } else {
-    return await get(`/anime/${id}/${slug}`);
+    return await get(`/anime/${slug}`);
   }
 };
 

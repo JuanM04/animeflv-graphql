@@ -11,8 +11,8 @@ import {
 
 export default {
   Query: {
-    anime: async (_, { id, slug }, ctx) => {
-      const body = await getAnime({ id, slug }, ctx);
+    anime: async (_, { slug }, ctx) => {
+      const body = await getAnime({ slug }, ctx);
 
       const rawInfo = body.split("var anime_info = ", 2)[1].split(";", 2)[0];
       const info = JSON.parse(rawInfo);
@@ -20,7 +20,7 @@ export default {
       const $ = cheerio.load(body);
 
       return {
-        id,
+        id: parseInt(info[0]),
         name: info[1],
         slug,
         type: $("span.Type")
