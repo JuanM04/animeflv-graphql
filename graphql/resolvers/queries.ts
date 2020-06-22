@@ -6,7 +6,7 @@ import {
   getThumbnail,
   imageUrlToBase64,
   getAnime,
-  explore
+  explore,
 } from "../utils";
 
 export default {
@@ -14,7 +14,10 @@ export default {
     anime: async (_, { slug }, ctx) => {
       const body = await getAnime({ slug }, ctx);
 
-      const rawInfo = body.split("var anime_info = ", 2)[1].split(";", 2)[0];
+      const rawInfo = body
+        .split("var anime_info = ", 2)[1]
+        .replace(/&#039;/g, "'")
+        .split(";", 2)[0];
       const info = JSON.parse(rawInfo);
 
       const $ = cheerio.load(body);
@@ -23,11 +26,9 @@ export default {
         id: parseInt(info[0]),
         name: info[1],
         slug,
-        type: $("span.Type")
-          .attr("class")
-          .split(" ")[1],
+        type: $("span.Type").attr("class").split(" ")[1],
         synopsis: $("div.Description p").text(),
-        rating: parseFloat($("#votes_prmd").text())
+        rating: parseFloat($("#votes_prmd").text()),
       };
     },
     search: async (_, args) => explore(args),
@@ -39,7 +40,7 @@ export default {
       const sources = JSON.parse(rawSources);
 
       return sources[type || "SUB"];
-    }
+    },
   },
   Anime: {
     cover: async ({ id }) => imageUrlToBase64(getCover(id)),
@@ -68,21 +69,24 @@ export default {
 
       const rawEpisodes = body.split("var episodes = ", 2)[1].split(";", 2)[0];
 
-      return JSON.parse(rawEpisodes).map(arr => ({
+      return JSON.parse(rawEpisodes).map((arr) => ({
         id: arr[1],
         n: arr[0],
-        thumbnail: getThumbnail(args.id, arr[0])
+        thumbnail: getThumbnail(args.id, arr[0]),
       }));
     },
     nextEpisode: async (args, _, ctx) => {
       const body = await getAnime(args, ctx);
 
-      const rawInfo = body.split("var anime_info = ", 2)[1].split(";", 2)[0];
+      const rawInfo = body
+        .split("var anime_info = ", 2)[1]
+        .replace(/&#039;/g, "'")
+        .split(";", 2)[0];
 
       return JSON.parse(rawInfo)[3] || null;
-    }
+    },
   },
   Episode: {
-    thumbnail: async ({ thumbnail }) => imageUrlToBase64(thumbnail)
-  }
+    thumbnail: async ({ thumbnail }) => imageUrlToBase64(thumbnail),
+  },
 };
