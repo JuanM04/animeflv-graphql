@@ -81,7 +81,7 @@ export default gql`
 
   type Episode {
     id: Int!
-    n: Int!
+    n: Float!
     thumbnail: String!
   }
 
