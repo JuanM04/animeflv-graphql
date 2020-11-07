@@ -41,11 +41,19 @@ const Anime = objectType({
           `${ANIMEFLV_URL}/uploads/animes/covers/${anime.id}.jpg`
         ),
     });
+    t.string("coverURL", {
+      resolve: (anime) =>
+        `${ANIMEFLV_URL}/uploads/animes/covers/${anime.id}.jpg`,
+    });
     t.string("banner", {
       resolve: (anime) =>
         imageUrlToBase64(
           `${ANIMEFLV_URL}/uploads/animes/banners/${anime.id}.jpg`
         ),
+    });
+    t.string("bannerURL", {
+      resolve: (anime) =>
+        `${ANIMEFLV_URL}/uploads/animes/banners/${anime.id}.jpg`,
     });
     t.string("synopsis");
     t.float("rating");

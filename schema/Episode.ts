@@ -16,6 +16,10 @@ const Episode = objectType({
           `https://cdn.animeflv.net/screenshots/${episode.id}/${episode.id}/th_3.jpg`
         ),
     });
+    t.string("thumbnailURL", {
+      resolve: async (episode) =>
+        `https://cdn.animeflv.net/screenshots/${episode.id}/${episode.id}/th_3.jpg`,
+    });
   },
 });
 
