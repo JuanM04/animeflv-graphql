@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "animeflv",
   "builds": [
     { "src": "index.ts", "use": "@now/node" },
     { "src": "index.html", "use": "@now/static" }

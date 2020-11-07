@@ -12,6 +12,6 @@ export default makeSchema({
   types: { ...scalars, ...enums, Anime, Episode, EpisodeSource, Query },
   outputs: {
     schema: join(process.cwd(), "generated", "schema.graphql"),
-    typegen: join(process.cwd(), "generated", "nexus.d.ts"),
+    typegen: join(process.cwd(), "generated", "nexus.ts"),
   },
 });
