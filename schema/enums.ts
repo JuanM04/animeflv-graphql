@@ -1,18 +1,8 @@
-import { GraphQLScalarType } from "graphql";
+import { enumType } from "@nexus/schema";
 
-export default {
-  AnimeType: {
-    TV: "tv",
-    MOVIE: "movie",
-    SPECIAL: "special",
-    OVA: "ova"
-  },
-  AnimeStatus: {
-    RUNNING: 1,
-    ENDED: 2,
-    SOON: 3
-  },
-  AnimeGenre: {
+export const AnimeGenre = enumType({
+  name: "AnimeGenre",
+  members: {
     ACCION: "accion",
     ARTES_MARCIALES: "artes-marciales",
     AVENTURA: "aventura",
@@ -52,16 +42,30 @@ export default {
     TERROR: "terror",
     VAMPIROS: "vampiros",
     YAOI: "yaoi",
-    YURI: "yuri"
+    YURI: "yuri",
   },
-  Date: new GraphQLScalarType({
-    name: "Date",
-    description: "Date scalar type YYYY-MM-DD",
-    parseValue(string) {
-      return string;
-    },
-    serialize(string) {
-      return string;
-    }
-  })
-};
+});
+
+export const AnimeStatus = enumType({
+  name: "AnimeStatus",
+  members: {
+    RUNNING: 1,
+    ENDED: 2,
+    SOON: 3,
+  },
+});
+
+export const AnimeType = enumType({
+  name: "AnimeType",
+  members: {
+    TV: "tv",
+    MOVIE: "movie",
+    SPECIAL: "special",
+    OVA: "ova",
+  },
+});
+
+export const SourcesType = enumType({
+  name: "SourcesType",
+  members: ["SUB", "LAT"],
+});

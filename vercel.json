@@ -2,7 +2,17 @@
   "version": 2,
   "name": "animeflv",
   "builds": [
-    { "src": "graphql/index.ts", "use": "@now/node" },
+    { "src": "index.ts", "use": "@now/node" },
     { "src": "index.html", "use": "@now/static" }
+  ],
+  "routes": [
+    {
+      "src": "/graphql",
+      "dest": "/index.ts"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
   ]
 }

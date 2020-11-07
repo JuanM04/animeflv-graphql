@@ -1,23 +1,32 @@
 {
   "name": "animeflv-graphql",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "description": "GraphQL API for AnimeFLV",
   "main": "index.js",
   "repository": "https://github.com/JuanM04/animeflv-graphql.git",
   "author": "Juan Martín Seery <me@juanm04.com>",
-  "license": "MIT",
+  "license": "GPL-3.0",
+  "scripts": {
+    "dev": "vercel dev",
+    "generate:nexus": "ts-node --transpile-only schema",
+    "vercel-build": "yarn -s generate:nexus"
+  },
   "dependencies": {
+    "@nexus/schema": "^0.17.0",
     "apollo-server-micro": "^2.19.0",
     "cheerio": "^1.0.0-rc.3",
     "cloudscraper": "^4.5.0",
     "graphql": "^15.4.0",
+    "graphql-iso-date": "^3.6.1",
     "request": "^2.88.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.22",
+    "@types/graphql-iso-date": "^3.4.0",
     "@types/node": "^14.14.6",
     "@types/request": "^2.48.5",
     "@types/request-promise": "^4.1.46",
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.5"
   }
 }

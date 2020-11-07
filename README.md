@@ -18,10 +18,6 @@
   </a>
   <!-- License -->
   <img alt="GitHub" src="https://img.shields.io/github/license/JuanM04/animeflv-graphql?style=flat-square">
-  <!-- Build Status -->
-  <a href="https://github.com/JuanM04/animeflv-graphql/actions?query=workflow%3A%22Now+Deploy%22">
-    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/JuanM04/animeflv-graphql/Now Deploy?style=flat-square">
-  </a>
 </div>
 
 <div align="center">
